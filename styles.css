@@ -12,5 +12,5 @@ body {
 }
 
 canvas {
-  box-shadow: black 20px 10px 50px;
+  box-shadow: rgba(0, 0, 0, 0.855) 20px 10px 50px;
 }
