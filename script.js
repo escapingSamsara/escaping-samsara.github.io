@@ -87,16 +87,16 @@ function isGameOver() {
 
   if (gameOver) {
     ctx.fillStyle = 'white'
-    ctx.font = '50px Verdana'
+    ctx.font = '50px Poppins'
 
     // Fill with gradient
     var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0)
-    gradient.addColorStop('0', ' magenta')
-    gradient.addColorStop('0.5', 'blue')
-    gradient.addColorStop('1.0', 'red')
+    gradient.addColorStop('0', ' white')
+    gradient.addColorStop('0.5', 'black')
+    gradient.addColorStop('1.0', 'grey')
 
     ctx.fillStyle = gradient
-    ctx.fillText('game over', canvas.width / 4, canvas.height / 2)
+    ctx.fillText('game over', canvas.width / 5.5, canvas.height / 2)
   } else if (HeadX === tileCount) {
     gameOver = true
   } else if (HeadY < 0) {
@@ -108,8 +108,8 @@ function isGameOver() {
 }
 function drawScore() {
   ctx.fillStyle = 'white'
-  ctx.font = '20px Verdana'
-  ctx.fillText('score ' + score, canvas.width - 70, 25)
+  ctx.font = '20px Poppins'
+  ctx.fillText('score ' + score, canvas.width - 100, 25)
 }
 
 function clearScreen() {
