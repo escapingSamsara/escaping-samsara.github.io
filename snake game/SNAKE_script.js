@@ -1,6 +1,8 @@
+//CANVAS
 const canvas = document.getElementById('game')
 const ctx = canvas.getContext('2d')
 
+//-----------------------------------------------------
 class SnakePart {
   constructor(x, y) {
     this.x = x
@@ -31,7 +33,10 @@ let score = 0
 
 const swallowSound = new Audio('heavy_swallow.mp3')
 
-//game loop
+//-----------------------------------------------------
+
+//GAME LOOP
+
 function drawGame() {
   // xVelocity = inputsXVelocity;
   // yVelocity = inputsYVelocity;
@@ -66,7 +71,11 @@ function isGameOver() {
   if (yVelocity === 0 && xVelocity === 0) {
     return false
   }
-  //walls
+
+  //-----------------------------------------------------
+
+  //WALLS
+
   if (HeadX < 0) {
     gameOver = true
   }
@@ -92,7 +101,7 @@ function isGameOver() {
     // Fill with gradient
     var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0)
     gradient.addColorStop('0', ' white')
-    gradient.addColorStop('0.5', 'black')
+    gradient.addColorStop('0.5', 'slategray')
     gradient.addColorStop('1.0', 'grey')
 
     ctx.fillStyle = gradient
@@ -106,17 +115,21 @@ function isGameOver() {
   }
   return gameOver
 }
+
+//SCORE
 function drawScore() {
   ctx.fillStyle = 'white'
   ctx.font = '20px Poppins'
   ctx.fillText('score ' + score, canvas.width - 100, 25)
 }
 
+//SCREEN CLEAR
 function clearScreen() {
   ctx.fillStyle = 'black'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
 }
-//Snake funtions
+
+//SNAKE FUNCTIONS
 function drawSnake() {
   ctx.fillStyle = 'beige'
   ctx.fillRect(HeadX * tileCount, HeadY * tileCount, tileSize, tileSize)
@@ -139,11 +152,13 @@ function changeSnakePosition() {
   HeadY = HeadY + yVelocity
 }
 
-//Apple funtions
+//APPLE FUNCTIONS
 function drawApple() {
   ctx.fillStyle = 'red'
   ctx.fillRect(AppleX * tileCount, AppleY * tileCount, tileSize, tileSize)
 }
+//idea to implement: different color for different score (for example green if score<=4, orange if score>4 && score<=8, red if score>8)
+
 function checkAppleCollision() {
   if (AppleX === HeadX && AppleY == HeadY) {
     AppleX = Math.floor(Math.random() * tileCount)
@@ -154,28 +169,30 @@ function checkAppleCollision() {
   }
 }
 
+//CONTROLS
+
 document.body.addEventListener('keydown', keyDown)
 
 function keyDown(event) {
-  //up
+  //UP
   if (event.keyCode == 38) {
     if (yVelocity == 1) return
     yVelocity = -1
     xVelocity = 0
   }
-  //down
+  //DOWN
   if (event.keyCode == 40) {
     if (yVelocity == -1) return
     yVelocity = 1
     xVelocity = 0
   }
-  //left
+  //LEFT
   if (event.keyCode == 37) {
     if (xVelocity == 1) return
     yVelocity = 0
     xVelocity = -1
   }
-  //right
+  //RIGHT
   if (event.keyCode == 39) {
     if (xVelocity == -1) return
     yVelocity = 0
